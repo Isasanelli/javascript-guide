@@ -1,0 +1,73 @@
+<!-- array.html 
+Array = gli array sono strutture dati che consentono di organizzare e aggregare valori in un modo efficiente-->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array JavaScript</title>
+</head>
+<body>
+    <h1>Operazioni sugli Array JavaScript</h1>
+    <h2>Array:</h2>
+    <ul id="arrayList"></ul>
+
+    <script>
+        let numeri = [];
+
+        // Aggiunta di elementi all'array 
+        numeri.push(1, 2, 3);
+
+        // Rimozione dell'elemento all'inizio dell'array
+        let primoElementoRimosso = numeri.shift();
+
+        // Modifica dell'array
+        numeri[0] = 10;
+
+        // Rimozione dell'ultimo elemento dall'array
+        let ultimoElementoRimosso = numeri.pop();
+
+        // Concatenazione di array
+        let numeriAggiuntivi = [4, 5, 6];
+        let numeriConcatenati = numeri.concat(numeriAggiuntivi);
+
+        // Ricerca di un elemento nell'array
+        let indiceElementoCercato = numeriConcatenati.indexOf(5);
+
+        // Rimozione di un elemento dall'array per valore
+        let valoreRimosso = 5;
+        numeriConcatenati = numeriConcatenati.filter(function(elemento) {
+            return elemento !== valoreRimosso;
+        });
+
+        // Mostra gli array sulla pagina web
+        let arrayHtml = document.getElementById('arrayList');
+        numeri.forEach(function(elemento) {
+            let listItem = document.createElement('li');
+            listItem.textContent = elemento;
+            arrayHtml.appendChild(listItem);
+        });
+
+        let risultati = [
+            "Primo elemento dell'array: " + numeri[0],
+            "Primo elemento rimosso: " + primoElementoRimosso,
+            "Lunghezza dell'array: " + numeri.length,
+            "Ultimo elemento dell'array: " + numeri[numeri.length - 1],
+            "Array originale: " + numeri.join(', '),
+            "Array aggiunto: " + numeri.concat(numeriAggiuntivi).join(', '),
+            "Array dopo l'aggiunta di elementi: " + numeri.join(', '),
+            "Array dopo la modifica: " + numeri.join(', '),
+            "Ultimo elemento rimosso: " + ultimoElementoRimosso,
+            "Array concatenato: " + numeriConcatenati.join(', '),
+            "Indice dell'elemento 5 nell'array: " + indiceElementoCercato,
+            "Array dopo la rimozione dell'elemento " + valoreRimosso + ": " + numeriConcatenati.join(', ')
+        ];
+
+        risultati.forEach(function(risultato) {
+            let listItem = document.createElement('li');
+            listItem.textContent = risultato;
+            arrayHtml.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>

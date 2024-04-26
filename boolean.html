@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accendi/Spegni la luce</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: background-color 0.5s ease;
+        }
+
+        #lampadina {
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        #filamento {
+            width: 80px;
+            height: 80px;
+            background-color: #f9ed73;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: background-color 0.5s ease;
+        }
+
+        #testo {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #pulsante {
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #pulsante:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="testo">Accendi la luce</h1>
+    <div id="lampadina">
+        <div id="filamento"></div>
+    </div>
+    <button id="pulsante" onclick="toggleLuce()">Accendi/Spegni</button>
+
+    <script>
+        // Variabili boolean
+        let luceAccesa = false;
+
+        function toggleLuce() {
+            const filamento = document.getElementById("filamento");
+            luceAccesa = !luceAccesa;
+
+            if (luceAccesa) {
+                filamento.style.backgroundColor = "#f1c40f"; // Colore giallo per il filamento acceso
+                document.getElementById("testo").innerText = "Luce accesa";
+                document.body.style.backgroundColor = "#f0f0f0"; // Cambia il colore dello sfondo quando la luce è accesa
+            } else {
+                filamento.style.backgroundColor = "#f9ed73"; // Colore originale del filamento spento
+                document.getElementById("testo").innerText = "Luce spenta";
+                document.body.style.backgroundColor = "#333"; // Cambia il colore dello sfondo quando la luce è spenta
+            }
+        }
+    </script>
+</body>
+</html>

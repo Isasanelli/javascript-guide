@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operazioni con If...Else If...Else JavaScript</title>
+</head>
+<body>
+    <h1>Operazioni con If...Else If...Else JavaScript</h1>
+    
+    <h2>Risultato delle operazioni:</h2>
+    <ul id="resultsList"></ul>
+
+    <script>
+        // Variabile casuale
+        let numeroCasuale = Math.floor(Math.random() * 100); // Genera un numero casuale compreso tra 0 e 99
+
+        // Condizioni If...Else If...Else
+        let risultatoCondizione;
+        if (numeroCasuale >= 50) {
+            risultatoCondizione = "Il numero casuale è superiore o uguale a 50";
+        } else if (numeroCasuale >= 25) {   
+            risultatoCondizione = "Il numero casuale è superiore o uguale a 25";
+        } else if (numeroCasuale >= 10) {
+            risultatoCondizione = "Il numero casuale è superiore o uguale a 10";
+        } else {
+            risultatoCondizione = "Il numero casuale è inferiore a 10";
+        }
+
+        // Funzione per aggiungere risultati alla lista
+        function appendResult(result) {
+            let resultsList = document.getElementById('resultsList');
+            let listItem = document.createElement('li');
+            listItem.textContent = result;
+            resultsList.appendChild(listItem);
+        }
+
+        // Aggiungi risultato alla lista
+        appendResult(risultatoCondizione);
+    </script>
+
+<script>
+    // Variabili di input
+    let punteggioSwitch = Math.floor(Math.random() * 100); // Genera un punteggio casuale tra 0 e 99
+
+    // Variabile di output
+    let votoSwitch;
+
+    // Istruzione switch per determinare il voto
+    switch (true) {
+        case (punteggioSwitch >= 90):
+            votoSwitch = 'A';
+            break;
+        case (punteggioSwitch >= 80):
+            votoSwitch = 'B';
+            break;
+        case (punteggioSwitch >= 70):
+            votoSwitch = 'C';
+            break;
+        case (punteggioSwitch >= 60):
+            votoSwitch = 'D';
+            break;
+        default:
+            votoSwitch = 'F';
+    }
+
+    // Riusiamo la funzione appendResult per aggiungere il risultato del voto alla lista
+    // Mostriamo il punteggio esatto e il voto corrispondente
+    appendResult("Il punteggio " + punteggioSwitch + " equivale al voto " + votoSwitch);
+</script>
+
+</body>
+</html>

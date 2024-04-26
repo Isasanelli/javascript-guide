@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esempio Cicli JavaScript</title>
+</head>
+<body>
+    <h1>Esempio Cicli JavaScript</h1>
+    
+    <h2>Risultati Ciclo For:</h2>
+    <ul id="forResults"></ul>
+
+    <h2>Risultati Ciclo While:</h2>
+    <ul id="whileResults"></ul>
+
+    <h2>Risultati Ciclo Do While:</h2>
+    <ul id="doWhileResults"></ul>
+
+    <script>
+        // Ciclo For
+        // Esempio di ciclo for che conta da 1 a 5
+        for (let i = 1; i <= 5; i++) {
+            // Creiamo un elemento lista e lo aggiungiamo alla lista con id 'forResults'
+            let listItem = document.createElement('li');
+            listItem.textContent = 'Lista di numeri: ' + i;
+            document.getElementById('forResults').appendChild(listItem);
+        }
+
+        // Ciclo While
+        // Esempio di ciclo while che conta da 1 a 5
+        let count = 1; // Inizializziamo il contatore
+        while (count <= 5) {
+            let listItem = document.createElement('li');
+            listItem.textContent = 'Lista: ' + count;
+            document.getElementById('whileResults').appendChild(listItem);
+            count++; // Incrementiamo il contatore
+        }
+
+        // Ciclo Do While
+        // Esempio di ciclo do...while che conta da 1 a 5
+        let doCount = 1; // Inizializziamo il contatore
+        do {
+            let listItem = document.createElement('li');
+            listItem.textContent = 'Lista di numeri ottenunti: ' + doCount;
+            document.getElementById('doWhileResults').appendChild(listItem);
+            doCount++; // Incrementiamo il contatore
+        } while (doCount <= 5); // La condizione viene valutata dopo l'esecuzione del blocco di codice
+    </script>
+</body>
+</html>

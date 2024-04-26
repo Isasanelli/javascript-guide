@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operazioni con Stringhe JavaScript</title>
+</head>
+<body>
+    <h1>Operazioni con Stringhe JavaScript</h1>
+    
+    <h2>Stringhe</h2>
+    <ul id="stringResults"></ul>
+
+    <script>
+        // Stringhe
+        let stringa = "Ciao, mondo!";
+        let lunghezzaStringa = stringa.length;
+        let maiuscoleStringa = stringa.toUpperCase();
+        let minuscoleStringa = stringa.toLowerCase();
+        let primaLettera = stringa[0];
+        let ultimaLettera = stringa[stringa.length - 1];
+        let indiceVirgola = stringa.indexOf(',');
+        let sottostringa = stringa.slice(0, 4);
+        let sostituisci = stringa.replace('mondo', 'universo');
+        let splitStringa = stringa.split(',');
+
+        // Funzione per aggiungere risultati alla lista
+        function appendResult(id, result) {
+            let resultsList = document.getElementById(id);
+            let listItem = document.createElement('li');
+            listItem.textContent = result;
+            resultsList.appendChild(listItem);
+        }
+
+        // Aggiungi risultati alle liste
+        appendResult("stringResults", "Lunghezza della stringa: " + lunghezzaStringa);
+        appendResult("stringResults", "Stringa in maiuscolo: " + maiuscoleStringa);
+        appendResult("stringResults", "Stringa in minuscolo: " + minuscoleStringa);
+        appendResult("stringResults", "Prima lettera della stringa: " + primaLettera);
+        appendResult("stringResults", "Ultima lettera della stringa: " + ultimaLettera);
+        appendResult("stringResults", "Indice della virgola nella stringa: " + indiceVirgola);
+        appendResult("stringResults", "Sottostringa dalla posizione 0 alla 3: " + sottostringa);
+        appendResult("stringResults", "Stringa con sostituzione di 'mondo' con 'universo': " + sostituisci);
+        appendResult("stringResults", "Stringa suddivisa per virgola: " + splitStringa);
+    </script>
+</body>
+</html>

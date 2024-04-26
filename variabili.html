@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variabili JavaScript</title>
+</head>
+<body>
+    <h1>Operazioni con Variabili JavaScript</h1>
+    
+    <ul id="resultsList"></ul>
+
+    <script>
+        //VARIABILI: sono scatole che contengono dati indefiniti che cambiano nel tempo
+        // questo ci permette di avere variabili dinamiche 
+        /* Le variabili JavaScript possono essere dichiarate in 4 modi:
+
+        Utilizzando var = È il modo più vecchio per dichiarare una variabile in JavaScript. 
+        Le variabili dichiarate con var sono funzionali nell'intera funzione in cui sono dichiarate,
+        anche se sono al di fuori del blocco di codice.
+        Tuttavia, non sono limitate dallo scope del blocco di codice come let e const. 
+        Di solito si preferisce evitare l'uso di var a favore di let e const. 
+
+        Utilizzando let = È una dichiarazione di variabile che introduce la nozione di block scope in JavaScript. Le variabili definite con let 
+        esistono solo all'interno del blocco di codice in cui sono state dichiarate. 
+        Questo aiuta a prevenire errori e a mantenere un migliore controllo sullo scope delle variabili, migliorando la leggibilità e la manutenibilità del codice. 
+
+        Utilizzando const = È simile a let, ma viene utilizzato per dichiarare variabili con valori che non cambiano. 
+        Una volta assegnato un valore a una variabile const, non è possibile riassegnargli un altro valore.
+        Le variabili const devono essere inizializzate con un valore al momento della dichiarazione. 
+        L'uso di const aiuta a creare codice più sicuro e prevedibile, poiché evita modifiche accidentali alle variabili. 
+        */
+
+        // scrivere una variabile dichiarata con var
+        var nome = "Mario";
+        // scrivere una variabile dichiarata con let
+        let eta = 25;
+        // scrivere una variabile dichiarata con const
+        const cognome = "Rossi";
+
+        // crea un piccolo programmino con var, let e const utilizzando le variabili costruite in precedenza
+        var nomeCompleto = nome + " " + cognome;
+        // aggiungiamo un let alla variabile nomeCompleto
+        let etaCompleta = nomeCompleto + " ha " + eta;
+
+        // Visualizza i risultati sulla pagina web
+        let resultsList = document.getElementById('resultsList');
+
+        function appendResult(result) {
+            let listItem = document.createElement('li');
+            listItem.textContent = result;
+            resultsList.appendChild(listItem);
+        }
+
+        appendResult("Nome: " + nome);
+        appendResult("Età: " + eta);
+        appendResult("Cognome: " + cognome);
+        appendResult("Nome completo: " + nomeCompleto);
+        appendResult("Nome completo con età: " + etaCompleta);
+    </script>
+</body>
+</html>

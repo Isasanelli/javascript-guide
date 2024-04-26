@@ -1,0 +1,106 @@
+<!--
+    Tipi di dati in JavaScript sono i seguenti:
+    Number
+    String
+    Boolean
+    Undefined
+    Null
+    BigInt
+    Symbol
+
+    Per esempio:
+    let numero = 10;
+    let stringa = "Ciao";
+    let booleano = true;
+    let undefined;
+    let null = null;
+    let bigInt = 1234567890123456789012345678901234567890n;
+    let symbol = Symbol("id");
+-->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipi di Dati JavaScript</title>
+</head>
+<body>
+    <h1>Operazioni con Tipi di Dati JavaScript</h1>
+    
+    <h2>Stringhe</h2>
+    <ul id="stringResults"></ul>
+
+    <h2>Numeri</h2>
+    <ul id="numberResults"></ul>
+
+    <h2>Booleani</h2>
+    <ul id="booleanResults"></ul>
+
+    <h2>Array</h2>
+    <ul id="arrayResults"></ul>
+
+    <h2>Oggetti</h2>
+    <ul id="objectResults"></ul>
+
+    <script>
+        // Stringhe
+        let stringa = "Ciao, mondo!";
+        let lunghezzaStringa = stringa.length;
+        let maiuscoleStringa = stringa.toUpperCase();
+
+        // Numeri
+        let numeroIntero = 42;
+        let numeroDecimale = 3.14;
+        let sommaNumeri = numeroIntero + numeroDecimale;
+        let radiceQuadrata = Math.sqrt(numeroIntero);
+
+        // Booleani
+        let vero = true;
+        let falso = false;
+        let risultatoAnd = vero && falso;
+        let risultatoOr = vero || falso;
+
+        // Array
+        let array = [1, 2, 3, 4, 5];
+        let lunghezzaArray = array.length;
+        let primoElementoArray = array[0];
+        let ultimoElementoArray = array[array.length - 1];
+
+        // Oggetti
+        let persona = {
+            nome: "Mario",
+            eta: 30,
+            professione: "Sviluppatore"
+        };
+        let nomePersona = persona.nome;
+        let etaPersona = persona["eta"];
+        let professionePersona = persona.professione;
+
+        // Funzione per aggiungere risultati alla lista
+        function appendResult(id, result) {
+            let resultsList = document.getElementById(id);
+            let listItem = document.createElement('li');
+            listItem.textContent = result;
+            resultsList.appendChild(listItem);
+        }
+
+        // Aggiungi risultati alle liste
+        appendResult("stringResults", "Lunghezza della stringa: " + lunghezzaStringa);
+        appendResult("stringResults", "Stringa in maiuscolo: " + maiuscoleStringa);
+
+        appendResult("numberResults", "Somma dei numeri: " + sommaNumeri);
+        appendResult("numberResults", "Radice quadrata di " + numeroIntero + ": " + radiceQuadrata);
+
+        appendResult("booleanResults", "Risultato di AND: " + risultatoAnd);
+        appendResult("booleanResults", "Risultato di OR: " + risultatoOr);
+
+        appendResult("arrayResults", "Lunghezza dell'array: " + lunghezzaArray);
+        appendResult("arrayResults", "Primo elemento dell'array: " + primoElementoArray);
+        appendResult("arrayResults", "Ultimo elemento dell'array: " + ultimoElementoArray);
+
+        appendResult("objectResults", "Nome della persona: " + nomePersona);
+        appendResult("objectResults", "Età della persona: " + etaPersona);
+        appendResult("objectResults", "Professione della persona: " + professionePersona);
+    </script>
+</body>
+</html>

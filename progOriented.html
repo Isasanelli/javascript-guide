@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmazione ad Oggetti: Auto</title>
+    <!-- Collegamento a Bootstrap CDN per lo stile -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Collegamento a Font Awesome per le icone -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Stile personalizzato per il layout */
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+
+        .card {
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-action {
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.1);
+        }
+
+        .movimento-yes {
+            color: #28a745 !important; /* Colore verde per indicare "Sì" */
+            transition: color 0.5s ease;
+        }
+
+        .movimento-yes::after {
+            content: "\f013"; /* Icona ingranaggio */
+            font-family: "Font Awesome 5 Free";
+            margin-left: 5px;
+            animation: zoomIn 0.5s ease;
+        }
+
+        .movimento-no::after {
+            content: "\f00d"; /* Icona croce */
+            font-family: "Font Awesome 5 Free";
+            margin-left: 5px;
+            animation: zoomIn 0.5s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .color-picker {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .color-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .color-circle:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h1 class="text-center mb-4">Auto</h1>
+                    <p><strong>Informazioni sull'auto:</strong></p>
+                    <p id="autoInfo"></p>
+                    <p><strong>Velocità attuale:</strong></p>
+                    <p id="velocita"></p>
+                    <p><strong>L'auto è in movimento?</strong></p>
+                    <p id="movimento"></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h2 class="text-center mb-4">Azioni</h2>
+                    <button class="btn btn-primary btn-action btn-block" onclick="inserisciMarcia()">Inserisci la marcia</button>
+                    <button class="btn btn-success btn-action btn-block" onclick="accelerare()">Incrementa la velocità di 50 km/h</button>
+                    <button class="btn btn-warning btn-action btn-block" onclick="frenare()">Decrementa la velocità di 20 km/h</button>
+                    <button class="btn btn-danger btn-action btn-block" onclick="spegniAuto()">Spegni l'auto</button>
+                    <div class="color-picker">
+                        <div class="color-circle bg-primary" onclick="cambiaColore('blu')"></div>
+                        <div class="color-circle bg-secondary" onclick="cambiaColore('grigio')"></div>
+                        <div class="color-circle bg-success" onclick="cambiaColore('verde')"></div>
+                        <div class="color-circle bg-danger" onclick="cambiaColore('rosso')"></div>
+                        <div class="color-circle bg-warning" onclick="cambiaColore('arancione')"></div>
+                        <div class="color-circle bg-info" onclick="cambiaColore('azzurro')"></div>
+                        <div class="color-circle bg-dark" onclick="cambiaColore('nero')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Definizione della classe Auto
+        class Auto {
+            constructor(marca, modello, anno, colore) {
+                this.marca = marca;
+                this.modello = modello;
+                this.anno = anno;
+                this.colore = colore;
+                this.velocita = 0;
+                this.marciaInserita = false;
+            }
+
+            mostraInfo() {
+                return "Marca: " + this.marca + ", Modello: " + this.modello + ", Anno: " + this.anno + ", Colore: " + this.colore;
+            }
+
+            accelerare(incremento) {
+                if (this.marciaInserita) {
+                    this.velocita += incremento;
+                } else {
+                    alert("Inserire la marcia prima di accelerare.");
+                }
+            }
+
+            frenare(decremento) {
+                if (this.marciaInserita) {
+                    if (this.velocita - decremento >= 0) {
+                        this.velocita -= decremento;
+                    } else {
+                        this.velocita = 0;
+                    }
+                } else {
+                    alert("Inserire la marcia prima di frenare.");
+                }
+            }
+
+            inserisciMarcia() {
+                this.marciaInserita = true;
+            }
+
+            spegniAuto() {
+                this.velocita = 0;
+                this.marciaInserita = false;
+            }
+
+            isAutoInMovimento() {
+                return this.velocita > 0;
+            }
+
+            cambiaColore(nuovoColore) {
+                this.colore = nuovoColore;
+                document.getElementById("autoInfo").style.color = nuovoColore;
+            }
+        }
+
+        // Creazione random dell'auto con i parametri
+        let miaAuto = new Auto("Audi", "A4", 2020, "blu");
+
+        // Funzioni per i pulsanti
+        function inserisciMarcia() {
+            miaAuto.inserisciMarcia();
+            refreshInfo();
+        }
+
+        function accelerare() {
+            miaAuto.accelerare(50);
+            refreshInfo();
+        }
+
+        function frenare() {
+            miaAuto.frenare(20);
+            refreshInfo();
+        }
+
+        function spegniAuto() {
+            miaAuto.spegniAuto();
+            refreshInfo();
+        }
+
+        function cambiaColore(colore) {
+            miaAuto.cambiaColore(colore);
+            refreshInfo();
+        }
+
+        // Funzione per aggiornare le informazioni sull'auto
+        function refreshInfo() {
+            document.getElementById("autoInfo").innerText = miaAuto.mostraInfo();
+            document.getElementById("velocita").innerText = miaAuto.velocita + " km/h";
+            document.getElementById("movimento").innerText = miaAuto.isAutoInMovimento() ? "Sì" : "No";
+            document.getElementById("movimento").classList.toggle("movimento-yes", miaAuto.isAutoInMovimento());
+            document.getElementById("movimento").classList.toggle("movimento-no", !miaAuto.isAutoInMovimento());
+        }
+
+        // Aggiornamento iniziale delle informazioni sull'auto
+        refreshInfo();
+    </script>
+
+    <!-- Collegamento a Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
